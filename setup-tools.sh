@@ -8,7 +8,7 @@ mkdir -p ~/.mobile-haskell
 
 # Install cabal HEAD.
 cd ~/.mobile-haskell
-git clone git@github.com:haskell/cabal.git
+git clone https://github.com/haskell/cabal.git #git@github.com:haskell/cabal.git
 cd cabal/cabal-install && stack exec --no-ghc-package-path -- ./bootstrap.sh
 
 # Install LLVM.
@@ -16,8 +16,10 @@ brew install llvm
 
 # Download the GHCs we need,
 cd ~/.mobile-haskell
-curl -o ghc-aarch64-apple-ios.tar.xz http://releases.mobilehaskell.org/x86_64-apple-darwin/9824f6e473/ghc-8.4.0.20180109-aarch64-apple-ios.tar.xz
-curl -o ghc-x86_64-apple-ios.tar.xz http://releases.mobilehaskell.org/x86_64-apple-darwin/9824f6e473/ghc-8.4.0.20180109-x86_64-apple-ios.tar.xz
+curl -o ghc-aarch64-apple-ios.tar.xz https://downloads.haskell.org/~ghc/7.8.3/ghc-7.8.3-arm-apple-ios.tar.xz
+curl -o ghc-x86_64-apple-ios.tar.xz https://downloads.haskell.org/~ghc/7.8.3/ghc-7.8.3-x86_64-apple-darwin.tar.xz
+#curl -o ghc-aarch64-apple-ios.tar.xz http://releases.mobilehaskell.org/x86_64-apple-darwin/9824f6e473/ghc-8.4.0.20180109-aarch64-apple-ios.tar.xz
+#curl -o ghc-x86_64-apple-ios.tar.xz http://releases.mobilehaskell.org/x86_64-apple-darwin/9824f6e473/ghc-8.4.0.20180109-x86_64-apple-ios.tar.xz
 # and unpack them.
 
 mkdir -p ghc-aarch64-apple-ios && xz -d ghc-aarch64-apple-ios.tar.xz && tar -xf ghc-aarch64-apple-ios.tar -C ghc-aarch64-apple-ios
@@ -25,7 +27,8 @@ mkdir -p ghc-x86_64-apple-ios && xz -d ghc-x86_64-apple-ios.tar.xz && tar -xf gh
 
 # Set up the toolchain wrapper.
 cd ~/.mobile-haskell
-git clone git@github.com:zw3rk/toolchain-wrapper.git
+# NOTE: Can also try: git clone https://github.com/ResAppHealth/toolchain-wrapper.git
+git clone https://github.com/zw3rk/toolchain-wrapper.git
 cd toolchain-wrapper && ./bootstrap
 
 # Set up libffi for our targets (Currently disabled, uncomment if needed).
